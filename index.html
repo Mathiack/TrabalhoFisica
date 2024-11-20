@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tempo de Reação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Tempo de Reação</h1>
+    <p>Meça a distância em metros que a régua percorre antes de ser pega.</p>
+    
+    <label for="distance">Distância percorrida (em metros):</label>
+    <input type="number" id="distance" placeholder="Exemplo: 0.5" step="0.01" min="0">
+    <br><br>
+    
+    <button onclick="calcularTempo()">Calcular Tempo de Reação</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function calcularTempo() {
+            // Recuperando o valor da distância
+            const distancia = parseFloat(document.getElementById("distance").value);
+            
+            // Verificando se a entrada é válida
+            if (isNaN(distancia) || distancia <= 0) {
+                document.getElementById("result").innerText = "Por favor, insira uma distância válida.";
+                return;
+            }
+
+            // Constante da aceleração da gravidade (em m/s²)
+            const g = 9.8;
+
+            // Calculando o tempo de reação usando a fórmula: t = sqrt(2 * d / g)
+            const tempo = Math.sqrt((2 * distancia) / g).toFixed(3);
+
+            // Exibindo o resultado
+            document.getElementById("result").innerText = `O tempo de reação é: ${tempo} segundos.`;
+        }
+    </script>
+</body>
+</html>
+
